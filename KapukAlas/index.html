@@ -41,7 +41,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Homepage</a></li>
           <li><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
-          <li><a href="#">About us</a></li>
+          <li><a onclick="getUserLocation();" href="#">About us</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="#">Blogs</a></li>
           <li><a href="#">Contact us</a></li>
@@ -218,6 +218,29 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+</script>
+
+<script>
+// Script for geolocation. HTML5 GeoLocation API
+function getUserLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert("Cannot find location");
+  }
+}
+function showPosition(position){
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  alert("Latitude: "+latitude+"  Longitude: "+longitude);
+  
+// $.ajax({
+//  url: "",
+//  type: "POST",
+//  data: latitude+" "+longitude
+//});
+  
 }
 </script>
   </body>

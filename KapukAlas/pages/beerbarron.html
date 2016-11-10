@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title> BEER BARON PAGE </title>
+        <script>
+            
+            var beer = 0;
+
+                function myFunction() {
+                    beer = 10;
+                    alert("You have made "+beer+" beers");
+                    window.location.href = "beerbaron.php?beer=" + beer; 
+                }
+            
+        </script>
+    </head>
+    <body>
+        
+        <button onclick="setTimeout(myFunction, 3000)">Make Beer</button>
+        
+
+        
+        
+
+    </body>
+</html>
