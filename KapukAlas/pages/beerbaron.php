@@ -1,31 +1,55 @@
 <?php
+       include 'config.php';
+       
+       $myConnection= mysqli_connect($host,$user,$pass) or die ("could not connect to mysql");  //add to a separate file, and call file **best practices**
+       mysqli_select_db($myConnection, "HaS") or die ("no database");
+       
+       //varlaibles
+       
+       $username = $_COOKIE['user'];
+       $beerCost = 50;
+       $spiritCost = 70;
+       
+       echo ($username);
+
+       $moneyQuery = "SELECT dollars FROM inventory WHERE username = '$username'";
+       $moneyResult = mysqli_query($myConnection, $moneyQuery);
+       $row = mysqli_fetch_row($moneyResult);
+       $money = $row[0];
+       
+       $beer = $_GET['beer']; // this gets the variable that was sent.
+       $spirit = $_GET['spirit'];
+       $wine = $_GET['wine'];
+       $cider = $_GET['cider'];// this gets the variable that was sent
+       
+       if($money >= $beerCost){
+              $addBeerQuery = "UPDATE inventory SET beer = beer + " . $beer . ", dollars = dollars - $beerCost WHERE username = '" .$username . "'"; // this is updating the beer of the user that has made the beer.
+              $result = mysqli_query($myConnection, $addBeerQuery);
+       }
+       
+       if($money >= $spiritCost){
+              $addSpiritQuery = "UPDATE inventory SET spirits = spirits + " . $spirit . ", dollars = dollars - $spiritCost WHERE username = '" .$username . "'";
+              $result = mysqli_query($myConnection, $addSpiritQuery);
+       }
+       
+       
 
        
        
-       //here we connect the varible to the database and query it out and print on the beerbarron.html page#
-           //Connect to the database
-       $host = "127.0.0.1";
-       $user = "x14378581";                     //Your Cloud 9 username
-       $pass = "";                              //Remember, there is NO password by default!
-       $db = "HaS";                             //Your database name you want to connect to
-       $port = 3306;                            //The port #. It is always 3306
- 
-    
-
-      
-       $myConnection= mysqli_connect($host,$user,$pass) or die ("could not connect to mysql"); 
-
-       mysqli_select_db($myConnection, "HaS") or die ("no database"); 
+     
+       //$currentBeer = mysqli_query($myConnection, "SELECT beer FROM inventory WHERE username = '" . $username . "'");
+       //$currentSpirits = mysqli_query($myConnection, "SELECT spirits FROM inventory WHERE username = '" . $username . "'");
        
-       $beer = $_GET['beer'];
+       //$currentBeer = (int)$currentBeer;
+       //$currentSpirits = (int)$currentSpirits;
        
-       $query = "UPDATE inventory SET beer = beer + " . $beer . " WHERE username = 'BigPoppaSauce'";
+       //echo("Beer = " .$currentBeer);
+       //echo("Spirits = " .$currentSpirits);
        
-       $result = mysqli_query($myConnection, $query);
        
        $myfile = fopen("beerbarron.html", "r") or die("Unable to open file!");
        echo fread($myfile,filesize("beerbarron.html"));
-       fclose($myfile);
+       fclose($myfile)
        
        /*$query = "SELECT * FROM credentials";
        $result = mysqli_query($myConnection, $query);

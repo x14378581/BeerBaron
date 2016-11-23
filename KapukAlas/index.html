@@ -41,18 +41,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Homepage</a></li>
           <li><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
-          <li><a onclick="getUserLocation();" href="#">About us</a></li>
+          <li><a href="#">About us</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="#">Blogs</a></li>
           <li><a href="#">Contact us</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <a onclick="getUserLocation();" class="dropdown-toggle" data-toggle="dropdown">Recent Nearby Players <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              
             </ul>
           </li>
         </ul>
@@ -86,6 +82,31 @@
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
+  </form>
+</div>
+
+
+<div id="chatBox" class="modal">
+  
+  <form class="modal-content animate">
+    <div class="imgcontainer" id='chatSpan'>
+      <span onclick="document.getElementById('chatBox').style.display='none'" class="close" title="Close Modal">&times;</span>
+      
+    </div>
+
+    <div class="container">
+      <label><b>Message</b></label>
+      <input type="textarea" placeholder="Enter your message" name="message"/>
+
+      <label ></label>
+        
+      <button type="button">Send</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button">Sell Beer</button>
+      </div>
+    
+
+    
   </form>
 </div>
 
@@ -219,11 +240,22 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+var chatBox = document.getElementById('chatBox');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == chatBox) {
+        chatBox.style.display = "none";
+    }
+}
+
 </script>
 
 <script>
 // Script for geolocation. HTML5 GeoLocation API
 function getUserLocation(){
+  
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
@@ -233,15 +265,91 @@ function getUserLocation(){
 function showPosition(position){
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-  alert("Latitude: "+latitude+"  Longitude: "+longitude);
   
-// $.ajax({
-//  url: "",
-//  type: "POST",
-//  data: latitude+" "+longitude
-//});
+  
+  
+  alert("Latitude: "+latitude+"  Longitude: "+longitude);
+  $('.dropdown-menu').children().empty();
+ /* var chatList = [
+    {"username":"John", "lastSeen":"2 mins ago"}, 
+    {"username":"Alan", "lastSeen":"5 mins ago"}, 
+    {"username":"Smith", "lastSeen":"7 mins ago"}
+];*/
+/*for(var i=0; i<chatList.length; i++){
+        var element = "<li><a id='userDetails"+i+"' onclick='startChat(this);'>"+chatList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+chatList[i].lastSeen+"</a></li>";
+        $('.dropdown-menu').append(element);
+}*/
+
+
+  
+
+//$('.dropdown-menu').children().empty();
+
+$.ajax({
+  url: "./pages/Location.php",
+  type: "POST",
+  data: {latitude: latitude, longitude: longitude},
+    success: function parseData(chatList){
+      for(var i=0; i<chatList.length; i++){
+        var element = "<li><a id='userDetails"+i+"' onclick='startChat(this);'>"+chatList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+chatList[i].lastSeen+"</a></li>";
+        $('.dropdown-menu').append(element);
+      }
+    }
+});
   
 }
+function startChat(element){
+  $('#chatBox').show();
+  //$('#chatSpan').empty();
+  $('#chatSpan').append("<span>"+$(element).text()+"</span>");
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*$('#idofdivwhereyouclick').click(function () {
+    var url = $('#idoftagwhereimageispresent').attr('href'),
+    image = new Image();
+    image.src = url;
+    image.onload = function () {
+        $('#image-holder').empty().append(image);
+    };
+    image.onerror = function () {
+        $('#image-holder').empty().html('That image is not available.');
+    }
+
+    $('#image-holder').empty().html('Loading...');
+
+    return false;
+});*/
+
+
+//place url of image in a <a></a> tag in its href property and make it hidden
+//copy url from that tag using above code and place image in new div
+
+
+
+
+
+
 </script>
   </body>
 </html>

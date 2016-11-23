@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title> </title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        
+        <script>
+            var beer = 0;
+            var sprit = 0;
+            
+            function makeBeer() {
+                beer = 10;
+                alert("Hello! I am an alert box!");
+                window.location.href = "beerbaron.php?beer="+beer;
+
+            }
+            function makeSpirit() {
+                spirit = 3;
+                alert("Have made "+spirit+" spirits");
+                window.location.href = "beerbaron.php?spirit="+spirit;
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>This is the beer barron page</h1>
+        
+        <button onclick="makeBeer()">Make Beer</button>
+        <button onclick="makeSpirit()">Make Beer</button>
+
+        <!--<input type="button" value="Make Beer" onclick="makeSpirit();" />-->
+
+    </body>
+</html>

@@ -1,0 +1,30 @@
+
+<!DOCTYPE>
+<html>
+    
+    <head>
+        <title>Testin stuff yo</title>
+        
+    </head>
+    <body>
+    
+<div id="Player_container">
+     <button type="button"  onclick="loadDoc1()">Player</button>
+     <div id="player">
+                                
+                               
+    </div>
+</div>
+    
+    <script>
+   function loadDoc1(){
+                                $.ajax({
+                                    url: 'test.php'})
+                                    .done (function(data) {
+                                    $('#player').html(data);
+                                    alert( "Load was performed." );
+                                    });
+   }
+   </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+-Create a database table that is appended to each user. (One for requests, one for denials)
+
+-Interaction:
+
+ (REQUEST GENERATION)
+
+ *Query database for username and stock information. Pull it into a table and print on front end of user dashboard.
+ Next to it, create buttons that perform the buy/sell function. 
+
+ When one of the buttons is triggered, push request data to database.
+
+ (RESPONSE)
+
+ *Write a listener that runs upon account load, and re-checks every 2 min for a database entry
+http://php.net/manual/en/class.eventlistener.php
+
+ *If found, then create a pop-up that prompts user to accept or deny request.
+
+ *If request is denied, send something to the database stating this.
+
+ *If request is approved, then do the appropriate math. 
