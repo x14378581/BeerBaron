@@ -18,7 +18,7 @@
             window.location.href = "beerbaron.php?spirit=" + spirit; // this sends the variable to the php file.
         }
 
-        function makeBeer() {
+/*        function makeBeer() {
             var d = new Date();
             var clickTime = d.getTime();
             var finishTime = clickTime + 10000;
@@ -26,7 +26,7 @@
             
             beer = 10;
             window.location.href = "beerbaron.php?beer=" + beer; // this sends the variable to the php file.
-        }
+        }*/
 
 
         function makeCider() {
@@ -36,7 +36,7 @@
         }
 
         function makeWine() {
-            Wine = 10;
+            wine = 10;
             //alert("You have made "+wine+" wines");
             window.location.href = "beerbaron.php?wine=" + wine; // this sends the variable to the php file.
         }
@@ -50,7 +50,7 @@
             for(var i=0;i < statsData.length;i++){
                     
                 var tmpData = statsData[i];
-                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr></br>"+"<tr><td>"+tmpData[1]+"</td></tr><br>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr><";
+                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr>"+"<tr><td>"+tmpData[1]+"</td></tr>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr>";
                     statsData = statsData + "</table>";
             
                     document.getElementById("statsInfo").innerHTML = statsData;
@@ -134,6 +134,39 @@
 
 
 <body>
+    <!-- Progress bar holder -->
+<div id="progress" style="width:500px;border:1px solid #ccc;"></div>
+<!-- Progress information -->
+<div id="information" style="width"></div>
+
+<?php
+// Total processes
+$total = 10;
+
+// Loop through process
+for($i=1; $i<=$total; $i++){
+  // Calculate the percentation
+  $percent = intval($i/$total * 100)."%";
+
+  // Javascript for updating the progress bar and information
+  echo '<script language="javascript">
+  document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
+  document.getElementById("information").innerHTML="'.$i.' row(s) processed.";
+  </script>';
+
+  // This is for the buffer achieve the minimum size in order to flush data
+  echo str_repeat(' ',1024*64);
+
+  // Send output to browser immediately
+  flush();
+
+  // Sleep one second so we can see the delay
+  sleep(1);
+}
+
+// Tell user that the process is completed
+echo '<script language="javascript">document.getElementById("information").innerHTML="Process completed"</script>';
+?>
 <!-- The Modal -->
 
     <div id="nav">
@@ -147,7 +180,7 @@
         <ul class="nav navbar-nav">
         </ul>
         <ul class="nav navbar-nav navbar-right1" style= width:100%;>
-          <li id="b" ><a href="#" onclick="setTimeout(makeBeer, 1000)"><center>Make Beer</center></a></li>
+          <li id="b"><a href="#" onclick="setTimeout(makeBeer, 1000)"><center>Make Beer</center></a></li>
           <li id="a"><a href="#" onclick="setTimeout(makeSpirits, 1000)"><center>Make Spirits</center></a></li>
           <li id="b"><a href="#" onclick="setTimeout(makeWine, 1000)"><center>Make Wine</center></a></li>
           <li id="a"><a href="#" onclick="setTimeout(makeCider, 1000)"><center>Make Cider</center></a></li>

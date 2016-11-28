@@ -2,14 +2,10 @@
 
     include 'config.php';
 
-    $query = mysql_query("SELECT * FROM inventory SORT BY dollars");
-    $result = ($myConnection, $query);
+    $query = mysqli_query($myConnection,"SELECT * FROM inventory");
+    $result = ($query);
     
-    while($row = mysql_fetch_assoc($result)){
-        foreach($row){
-            print "$row";
-        }
-        print "\r\n";
-    }
+    echo ($result);
+
 
 ?>

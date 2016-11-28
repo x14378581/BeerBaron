@@ -28,7 +28,7 @@
        }
        
        if($money >= $spiritCost){
-              $addSpiritQuery = "UPDATE inventory SET spirits = spirits + " . $spirit . ", dollars = dollars - $spiritCost WHERE username = '" .$username . "'";
+              $addSpiritQuery = "UPDATE inventory SET spirits = spirits + " . $spirit . ", dollars = dollars - $spiritCost WHERE username = '" .$username . "'"; // this is updating the spirit value of the user that has made the beer.
               $result = mysqli_query($myConnection, $addSpiritQuery);
        }
        

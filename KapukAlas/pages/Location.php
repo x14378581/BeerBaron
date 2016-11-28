@@ -23,14 +23,12 @@
     
     echo "The latitude value that was sent is ".$latitude;
     echo "The longitude value that was sent is ".$longitude;
-    
-    
     $locationQuery = "UPDATE location set latitude='$latitude' , longitude='$longitude' WHERE username='BigPoppaSauce'";
     echo "Query :: ".$locationQuery;
     $result = $myConnection->query($locationQuery) or die (mysql_error());
-    
+    $myConnection->close();
      
     
-    $myConnection->close();
+    
 
 ?>

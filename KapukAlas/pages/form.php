@@ -22,8 +22,17 @@
               $charater = $_POST['charater'];
               
            }
+           
        
            //echo ($first_name." ".$charter);
+           
+           $queryUser = mysqli_query($myConnection,"SELECT username FROM users WHERE username='".$username."'");
+               if (mysqli_num_rows($queryUser) !=0){
+                    echo "Username already exists";
+                    $myfile = fopen("form.html", "r") or die("Unable to open file!");
+                    echo fread($myfile,filesize("form.html"));
+                    fclose($myfile);
+              }
     
 
     
@@ -39,8 +48,8 @@
            $result1 = mysqli_query($myConnection, $query1);
            
            if ($charater == 0){
-              $myfile = fopen("beerbaron.html", "r") or die("Unable to open file!");
-              echo fread($myfile,filesize("beerbaron.html"));
+              $myfile = fopen("beerbarron.html", "r") or die("Unable to open file!");
+              echo fread($myfile,filesize("beerbarron.html"));
               fclose($myfile);
        }
            

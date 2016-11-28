@@ -18,7 +18,7 @@
     $result = $MyConnection->query($locationquery);
     
     $location = $_GET['location']; // this gets the variable that was sent.
-       $addlocationQuery = "UPDATE location " . $location 
+       $addlocationQuery = "UPDATE location " . $location;
        
 
        

@@ -1,17 +1,29 @@
 <html>
     <head>
     <script>
-    function checkStats(){
-        $ajax(){
-        url:stats.php
-        type:_POST
-        data:{ beer, spirits, dollars }
-        
-        success: function(data){
-            var contents = JSON.parse(data);     
-     }
-    }    
-}
-        </script>
-      </head>
+        function checkStats() {
+            alert("the function checkstats has been called");
+            var statsData = "<table><tr><th> Player Statistics </th><th> Player Statistics </th></tr>"
+            
+            for(var i=0;i < statsData.length;i++){
+                    
+                var tmpData = statsData[i];
+                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr>"+"<tr><td>"+tmpData[1]+"</td></tr>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr>";
+                    statsData = statsData + "</table>";
+            
+                    document.getElementById("statsInfo").innerHTML = statsData;
+                    document.getElementById("statsInfo").style.display = "inline";
+                    
+                              } 
+                              
+    </script>
+    </head>
+<body>
+    <p id="statsData" onclick="statsInfo()"></p>
+
+    <div id="statsInfo" > 
+        <button id="CheckStats" onclick="statsInfo()" type = button> Check Beer Baron Player Stats</button>
+     </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </html>

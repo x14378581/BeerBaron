@@ -270,32 +270,31 @@ function showPosition(position){
   
   alert("Latitude: "+latitude+"  Longitude: "+longitude);
   $('.dropdown-menu').children().empty();
- /* var chatList = [
-    {"username":"John", "lastSeen":"2 mins ago"}, 
-    {"username":"Alan", "lastSeen":"5 mins ago"}, 
-    {"username":"Smith", "lastSeen":"7 mins ago"}
-];*/
-/*for(var i=0; i<chatList.length; i++){
-        var element = "<li><a id='userDetails"+i+"' onclick='startChat(this);'>"+chatList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+chatList[i].lastSeen+"</a></li>";
-        $('.dropdown-menu').append(element);
-}*/
-
-
-  
-
-//$('.dropdown-menu').children().empty();
+  var chatList = [];
 
 $.ajax({
   url: "./pages/Location.php",
   type: "POST",
-  data: {latitude: latitude, longitude: longitude},
+  data: {latitude: latitude, longitude: longitude}
+  /*dataType: 'json',
     success: function parseData(chatList){
       for(var i=0; i<chatList.length; i++){
+        alert(chatList[i].username);
         var element = "<li><a id='userDetails"+i+"' onclick='startChat(this);'>"+chatList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+chatList[i].lastSeen+"</a></li>";
         $('.dropdown-menu').append(element);
       }
-    }
+    }*/
 });
+
+chatList = [
+    {"username":"John", "lastSeen":"2 mins ago"}, 
+    {"username":"Alan", "lastSeen":"5 mins ago"}, 
+    {"username":"Smith", "lastSeen":"7 mins ago"}
+];
+for(var i=0; i<chatList.length; i++){
+        var element = "<li><a id='userDetails"+i+"' onclick='startChat(this);'>"+chatList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+chatList[i].lastSeen+"</a></li>";
+        $('.dropdown-menu').append(element);
+}
   
 }
 function startChat(element){

@@ -1,0 +1,34 @@
+<head>
+
+
+<script>
+/*
+
+    This is a testiong function that sends an ajax request to the server and shows a 
+    loading dialogue
+*/
+    function getinfo(){
+    
+       alert("the function getinfo has been csalled");
+       
+        $.ajax({
+             type:"post",
+             url: 'getInfoCall.php',
+             success: function(data) {
+                 alert("the ajax function has received");
+                document.getElementById("output").innerHTML = "Paragraph changed!";
+            }
+        });
+    }
+    
+    
+    
+</script>
+</head>
+<body>
+    <p id="demo" onclick="getinfo()">Click me to change my HTML content (innerHTML).</p>
+
+    <button id="demo" onclick="getinfo()"> Click</button>
+    <div id="output"><h1> This message should change</h1></div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
