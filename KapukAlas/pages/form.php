@@ -23,40 +23,30 @@
               
            }
            
-       
-           //echo ($first_name." ".$charter);
+           $check = "SELECT * FROM users WHERE username = '$username'";
+           $resultCheck = mysqli_query ($myConnection, $check);
            
-           $queryUser = mysqli_query($myConnection,"SELECT username FROM users WHERE username='".$username."'");
-               if (mysqli_num_rows($queryUser) !=0){
-                    echo "Username already exists";
-                    $myfile = fopen("form.html", "r") or die("Unable to open file!");
-                    echo fread($myfile,filesize("form.html"));
-                    fclose($myfile);
-              }
-    
-
-    
-           //$connection = mysqli_connect($host, $user, $pass, $db, $port)or die(mysql_error());
-           // check for excistance of database and table 
-           
-           //$query("INSERT INTO  'cri' ('fname', 'sname', 'email', 'username', 'password', 'charType') VALUES('". $first_name . "', '" .$last_name . "', '" .NULL . "','".NULL. "',' " .NULL ."','".NULL."')");
-           //$query ("INSERT INTO 'credentials' ('username', 'email', 'fname', 'sname', 'charType') VALUES('".$username."', '".$email."', '".$first_name."', '".$last_name."','".$charater."')");
+           if ($resultCheck->num_rows != 0){
+               echo "that name is already taken";
+                /*$myfile = fopen("form.html", "r") or die("Unable to open file!");
+                 echo fread($myfile,filesize("form.html"));
+                fclose($myfile);*/
+           }
+           else{
+              
            $query = "INSERT into users (`username`,`email`,`fname`,`sname`,`password`,`charType`) values ('$username','$email','$first_name','$last_name','$password','$charater')";
            $result = mysqli_query($myConnection, $query);
            
-           $query1 = "INSERT INTO inventory VALUES ('$username', 0, 0, '500')";
+           $query1 = "INSERT INTO inventory VALUES ('$username', 10, 10, '500')";
            $result1 = mysqli_query($myConnection, $query1);
            
-           if ($charater == 0){
-              $myfile = fopen("beerbarron.html", "r") or die("Unable to open file!");
-              echo fread($myfile,filesize("beerbarron.html"));
+          /* if ($charater == 0){
+              $myfile = fopen("form.html", "r") or die("Unable to open file!");
+              echo fread($myfile,filesize("form.html"));
               fclose($myfile);
-       }
+            }*/
+          }
            
            
-           //echo ($result);
-       
-           //$res = mysqli_fetch_row($result);
-           //echo "The value that is in the first location is ".$row[0];
            
 ?>

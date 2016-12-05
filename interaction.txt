@@ -19,3 +19,19 @@ http://php.net/manual/en/class.eventlistener.php
  *If request is denied, send something to the database stating this.
 
  *If request is approved, then do the appropriate math. 
+
+*More Granularly*
+
+- Listener on main (ajax function)
+- Listener triggers every two minutes
+- Call to checker.php (ajax function call)
+- checker.php queries database for details. if exists... =>
+- Pop-up (using js) with two buttons (accept or deny). Info is pulled into popup
+- If accept, then call function accept(), else, call deny() 
+- accept() performs maths to deduct cost of beer* and adds it to current user's stock, and then sends a message to database table.
+- deny() simply sends message to database table, to be picked up by listener, later.
+
+
+-After final transaction query is performed, run two queries...
+  a) Query that populates the "response table" with an accept or deny repsonse for user requesting the transaction
+  b) Delete original transaction from transaction table.

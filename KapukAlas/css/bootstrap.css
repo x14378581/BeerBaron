@@ -6584,8 +6584,11 @@ button.close {
 }
 
 .hidden {
-  display: none !important;
-  visibility: hidden !important;
+  display: none;
+  visibility: hidden;
+}
+#hidden.hidden {
+  visibility: visible ; !important;
 }
 
 .affix {

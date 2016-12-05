@@ -5,12 +5,14 @@
        mysqli_select_db($myConnection, "HaS") or die ("no database");
        
        //varlaibles
+       sleep(5);
+
        
        $username = $_COOKIE['user'];
        $beerCost = 50;
        $spiritCost = 70;
        
-       echo ($username);
+      // echo ($username);
 
        $moneyQuery = "SELECT dollars FROM inventory WHERE username = '$username'";
        $moneyResult = mysqli_query($myConnection, $moneyQuery);

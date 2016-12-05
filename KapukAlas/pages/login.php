@@ -95,11 +95,11 @@ else{
          echo "Value is: " . $_COOKIE[$cookie_name];
     }*/
       
-     if ($row == 0){
-       $myfile = fopen("beerbaron.html", "r") or die("Unable to open file!");
-       echo fread($myfile,filesize("beerbaron.html"));
+     //if ($row == 0){
+       $myfile = fopen("transaction.html", "r") or die("Unable to open file!");
+       echo fread($myfile,filesize("transaction.html"));
        fclose($myfile);
-      }
+      //}
       
       
 

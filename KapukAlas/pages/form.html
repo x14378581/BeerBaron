@@ -2,6 +2,21 @@
 <html>
     <head>
         <title>Form </title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        
+    <script>
+function form(){
+
+                $.ajax({
+                    url:"form.php",
+                })
+                .done(function(msg){
+                $('#checker').html(msg);
+            
+                });
+            }
+        
+    </script>
     </head>
     <body>
         <form action = "form.php" method ="POST">
@@ -31,8 +46,12 @@
                 </option>
             </select>
             <br/>
-            <input type="submit"  name = "formSubmit" value="Submit"/>
+            <input type="submit" onclick = "form();"  name = "formSubmit" value="Submit"/>
         </form>
+        
+        <div id "checker">
+            
+        </div>
         
          <form action = "login.php" method ="POST">
             Username:<br/>

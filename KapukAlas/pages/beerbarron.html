@@ -5,6 +5,34 @@
     <title> BEER BARON PAGE </title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+/*
+    This is a testiong function that sends an ajax request to the server and shows a 
+    loading dialogue
+*/
+    function getinfo(){
+    
+       alert("the function getinfo has been csalled");
+       
+        $.ajax({
+             type:"post",
+             url: 'beerbaron.php',
+             success: function(data) {
+                 alert("the ajax function has received");
+                document.getElementById("output").innerHTML = "Paragraph changed!";
+            }
+        });
+    }
+    
+    
+    
+</script>
+    <style type="text/css">
+      .hidden {
+        display: none;
+      }
+    </style>
     <script>
         var beer = 0;
         var spirit = 0;
@@ -36,28 +64,49 @@
         }
 
         function makeWine() {
-            Wine = 10;
+            wine = 10;
             //alert("You have made "+wine+" wines");
             window.location.href = "beerbaron.php?wine=" + wine; // this sends the variable to the php file.
         }
     </script>
-    
+   
     <script>
         function checkStats() {
             alert("the function checkstats has been called");
-            var statsData = "<table><tr><th> Player Statistics </th><th> Player Statistics </th></tr>"
+            var statsData = "<table><tr><th> Beer Baron </th><th> Statistics </th></tr>"
             
-            for(var i=0;i < statsData.length;i++){
+            for(var i=0;i < statsData.length; i++){
                     
                 var tmpData = statsData[i];
-                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr></br>"+"<tr><td>"+tmpData[1]+"</td></tr><br>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr><";
-                    statsData = statsData + "</table>";
-            
-                    document.getElementById("statsInfo").innerHTML = statsData;
-                    document.getElementById("statsInfo").style.display = "inline";
+                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr>"+"<tr><td>"+tmpData[1]+"</td></tr>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr>";
+                    
                     
                               } 
-            /*
+                    statsData = statsData + "</table>";
+                    document.getElementById("statsInfo").innerHTML = statsData
+                    document.getElementById("statsInfo").style.display = "inline";
+                    
+                    
+                    /*
+                     /* 
+    <script>
+        function checkStats() {
+            alert("the function checkstats has been called");
+            var statsData = "<table><tr><th> Beer Baron </th><th> Statistics </th></tr>"
+            
+            for(var i=0;i < statsData.length; i++){
+                    
+                var tmpData = statsData[i];
+                    statsData = statsData + "<table><tr><td>"+tmpData[0]+"</td></tr>"+"<tr><td>"+tmpData[1]+"</td></tr>"+"<tr><td>"+tmpData[2]+"</td></tr>"+"<tr><td>"+tmpData[3]+"</td></tr>";
+                    
+                    
+                              } 
+                    statsData = statsData + "</table>";
+                    document.getElementById("statsInfo").innerHTML = statsData
+                    document.getElementById("statsInfo").style.display = "inline";
+                    
+                    
+                    
                 This file is were we need to change a html element with the contents of the query after being executed...
                 
                 first we create an empty element in html and we make it invisible..
@@ -95,7 +144,8 @@
                 document.getElementById("statsInfo").innerHTML = statsData.
                 document.getElementById("statsInfo").style.display= "inline";
             */
-            /* $.ajax({
+            /*
+            $.ajax({
                     url: "stats.php",
                     type: "POST",
                     data: {beer: beer,
@@ -111,11 +161,16 @@
                 });
             }
             */
+        /*
              $.ajax({
                     url: "stats.php",
                     type: "POST",
                     data: {beer: beer,
-                           spirit: spirit},
+                           spirits: spirits,
+                           cider: cider,
+                       //    wine: wine,
+                       //    dollars: dollars
+                    },
                     success: function(data) {
                         alert("the data coming back is : "+data);
                         var stats = JSON.parse(data);
@@ -126,7 +181,7 @@
                     }
                 });
             }
-            
+           */ 
     </script>
     </script>
 </head>
@@ -147,10 +202,10 @@
         <ul class="nav navbar-nav">
         </ul>
         <ul class="nav navbar-nav navbar-right1" style= width:100%;>
-          <li id="b" ><a href="#" onclick="setTimeout(makeBeer, 1000)"><center>Make Beer</center></a></li>
-          <li id="a"><a href="#" onclick="setTimeout(makeSpirits, 1000)"><center>Make Spirits</center></a></li>
-          <li id="b"><a href="#" onclick="setTimeout(makeWine, 1000)"><center>Make Wine</center></a></li>
-          <li id="a"><a href="#" onclick="setTimeout(makeCider, 1000)"><center>Make Cider</center></a></li>
+          <li id="b"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeBeer, 1000)"><center>Make Beer</center></a></li>
+          <li id="a"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeSpirits, 1000)"><center>Make Spirits</center></a></li>
+          <li id="b"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeWine, 1000)"><center>Make Wine</center></a></li>
+          <li id="a"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeCider, 1000)"><center>Make Cider</center></a></li>
             </ul>
           </li>
         </ul>
@@ -166,7 +221,7 @@
   <form class="modal-content animate" action="action_page.php">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+
     </div>
 
     <div class="container">
@@ -208,7 +263,8 @@
       </div>
     
       <div id="statsInfo" style="display:none"> 
-        <button type = button> Check Beer Baron Player Stats</button>
+        <button type = button > Check Beer Baron Player Stats</button>
+        
       </div>
       
     
@@ -222,7 +278,7 @@
     <section id="about" class="container">
       <div class="row">
         <div class="col-md-3">
-         
+        
           <h3>PO PO</h3>
           <p></p>
         </div>
@@ -243,51 +299,16 @@
   </div>
 </div>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h4>KapukAlas</h4>
-          <p>Duis viverra suscipit vehicula. Aenean eu massa leo. Sed ullamcorper pretium risus eu scelerisque. Mauris venenatis consequat ultrices. Quisque fringilla sed lacus eu volutpat.</p>
-        </div>
-        <div class="col-md-3">
-          <h4>Our location</h4>
-          <div class="row">
-            <div class="col-md-1"><span class="glyphicon glyphicon-map-marker"></span></div>
-            <div class="col-md-10">Vestibulum placerat, enim sit amet congue aliquet.</div>
-          </div><br>
-          <div class="row">
-            <div class="col-md-1"><span class="glyphicon glyphicon-envelope"></span></div>
-            <div class="col-md-10">varius@nibh.lectus.com</div>
-          </div><br>
-          <div class="row">
-            <div class="col-md-1"><span class="glyphicon glyphicon-earphone"></span></div>
-            <div class="col-md-10">08888-72738-23</div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <h4>Latest blogs</h4>
-          <div class="row">
-            <div class="col-md-1"><span class="glyphicon glyphicon-pencil"></span></div>
-            <div class="col-md-10">Maecenas suscipit in est a placerat. Curabitur semper sed nibh sed egestas. </div>
-          </div><br>
-          <div class="row">
-            <div class="col-md-1"><span class="glyphicon glyphicon-pencil"></span></div>
-            <div class="col-md-10">Maecenas suscipit in est a placerat. Curabitur semper sed nibh sed egestas. </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <h4>Subscribe</h4>
-          <input type="text" class="form-control" placeholder="your email address">
-        </div>
-      </div>
-    </div>
-  </footer>  
-
-  <footer id="copyright">
-    <p>Copright by @andreyyann 2014, All right reserved.</p>
-  </footer>
-
+ 
+  
+  
+  <div id="container">
+ <div id="output"><img id="hidden" class="hidden" src="progress.gif"></div> </div>
+ 
+ 
+ 
+ 
+ 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -414,16 +435,8 @@ function startChat(element){
          <input type="button"  value = "Display Message" onclick="getData('testData.txt','targetDiv')">
          
          </form>-->
-    <button name="beer" onclick="setTimeout(makeBeer, 1000)">Make Beer</button>
-    <button onclick="setTimeout(makeSpirits, 1000)">Make Spirits</button>
-    <button onclick="setTimeout(makeSpirits, 1000)">Make Wine</button>
-    <button onclick="checkStats()">Check stats</button>
+
     
-    <div id="targetDiv">
-        <p>hello</p>
-    </div>
-    
-    <div id="statsInfo" style="display:none"></div>
     
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
