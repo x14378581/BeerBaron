@@ -11,7 +11,7 @@
         //echo($buyer." ".$item." ".$quantity." ".$selling_price);
         
         
-        $query = "INSERT into transactions (`username`,`buyer`,`item`,`quantity`,`price`) values ('$username','$buyer','$item','$quantity','$selling_price')";
+        $query = "INSERT into transactions (`username`,`buyer`,`item`,`quantity`,`price`, `active`) values ('$username','$buyer','$item','$quantity','$selling_price', TRUE)";
         $result = mysqli_query($myConnection, $query);
         
         

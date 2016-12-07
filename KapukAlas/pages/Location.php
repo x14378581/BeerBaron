@@ -27,8 +27,23 @@
     echo "Query :: ".$locationQuery;
     $result = $myConnection->query($locationQuery) or die (mysql_error());
     $myConnection->close();
-     
+    
+    
+  $latFrom = deg2rad($latitude);
+  $lonFrom = deg2rad($longitude);
+  $latTo = deg2rad("53.343792");
+  $lonTo = deg2rad("-6.254572");
+  $earthRadius = 6371000;
+
+  $lonDelta = $lonTo - $lonFrom;
+  $a = pow(cos($latTo) * sin($lonDelta), 2) +
+    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+  $angle = atan2(sqrt($a), $b);
+  echo "<br>".round($angle * $earthRadius)." meters"; 
     
     
 
 ?>
+

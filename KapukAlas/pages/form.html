@@ -14,26 +14,26 @@ function form(){
                 $('#checker').html(msg);
             
                 });
-            }
+            }  
         
     </script>
     </head>
     <body>
         <form action = "form.php" method ="POST">
             First Name:<br/>
-            <input type="text" name="Fname"/>
+            <input type="text" name="Fname" required="true"/>
             <br/>
             Last Name:<br/>
-            <input type="text" name="Lname"/>
+            <input type="text" name="Lname" required="true"/>
             <br/>
             Email:<br/>
-            <input type="text" name="Email"/>
+            <input type="text" name="Email" required="true"/>
             <br/>
             Username:<br/>
-            <input type="text" name="Uname"/>
+            <input type="text" name="Uname" required="true"/>
             <br/>
             Password:<br/>
-            <input type="text" name="Password"/>
+            <input type="password" name="Password" required="true"/>
             <br/>
             Choose a Character: <br/><br/>
             <select name ="charater">
@@ -55,10 +55,10 @@ function form(){
         
          <form action = "login.php" method ="POST">
             Username:<br/>
-            <input type="text" name="Uname"/>
+            <input type="text" name="Uname" required="true"/>
             <br/>
             Password:<br/>
-            <input type="text" name="Password"/>
+            <input type="password" name="Password" required="true"/>
             <br/>
             <input type="submit"  name = "formSubmit" value="Submit"/>
         </form>

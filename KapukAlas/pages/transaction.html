@@ -2,77 +2,19 @@
 <html>
    <head>
       <title> </title>
+          <link href="../css/style.css" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script>
+        function hideResponse(){
+            /*
+                this is wqhere we need to hide the response tgext....
+            */
+            //alert("The hideResponse function ghas been activated");
+            document.getElementById("response").style.display = "none";
+            document.getElementById("hideRes").style.display = "none";
+         }
+      </script>
       
-      <style type="text/css">
-      
-      #player{
-          width: 300px;
-          height: 300px;
-          
-      }
- table { 
-          width: 100%; 
-          border-collapse: collapse; 
-        }
-
-        tr:nth-of-type(odd) { 
-          background: #eee; 
-        }
-        th { 
-          background: #333; 
-          color: white; 
-          font-weight: bold; 
-        }
-        td, th { 
-          padding: 6px; 
-          border: 1px solid #ccc; 
-          text-align: left; 
-        }
-        
-        @media 
-        only screen and (max-width: 760px),
-        (min-device-width: 768px) and (max-device-width: 1024px)  {
-        
-        	/* Force table to not be like tables anymore */
-        	table, thead, tbody, th, td, tr { 
-        		display: block; 
-        	}
-        	
-        	/* Hide table headers (but not display: none;, for accessibility) */
-        	thead tr { 
-        		position: absolute;
-        		top: -9999px;
-        		left: -9999px;
-        	}
-        	
-        	tr { border: 1px solid #ccc; }
-        	
-        	td { 
-        		/* Behave  like a "row" */
-        		border: none;
-        		border-bottom: 1px solid #eee; 
-        		position: relative;
-        		padding-left: 50%; 
-        	}
-        	
-        	td:before { 
-        		/* Now like a table header */
-        		position: absolute;
-        		/* Top/left values mimic padding */
-        		top: 6px;
-        		left: 6px;
-        		width: 45%; 
-        		padding-right: 10px; 
-        		white-space: nowrap;
-        	}
-        	    
-        	td:nth-of-type(1):before { content: "Username:"; }
-          	td:nth-of-type(2):before { content: "Beer:"; }
-          	td:nth-of-type(3):before { content: "Spirit:"; }
-          	td:nth-of-type(4):before { content: "Money:"; }
-        	}
-      </style>
    </head>
    <body>
       <h1>This is the transaction test page</h1>
@@ -90,8 +32,6 @@
             Price:<br/>
             <input id="price" type="number" name="price" min="1"/>
             <br/>
-            
-            <button type="button"  onclick="myFunction2()">test</button>
              
           </form>
       </div>
@@ -108,8 +48,9 @@
              
          </div>
        <div id = "response">
-             
-        </div>
+           
+       </div>
+       <button  id="hideRes" onclick="hideResponse();" style="display:inline">Hide Response</button> 
       </div>
      
     <script>
@@ -149,13 +90,14 @@ setInterval(function() {
  //alert("Lets do it!!")
  request();
  response();
+ loadDoc1();
  
 }, 3000 /*1000 * 60 * 2*/); // where X is your every X minutes
 
 function request(){
 
                 $.ajax({
-                    url:"checker.php",
+                    url:"beerChecker.php",
                 })
                 .done(function(msg){
                 $('#checker').html(msg);
@@ -168,12 +110,15 @@ function request(){
 
 function response(){
                  $.ajax({
-                    url:"response.php",
+                    url:"beerResponse.php",
                 })
                 .done(function(msg){
                 $('#response').html(msg);
-                    
-                   // alert(msg);
+                //alert(msg);
+                if(msg != null){
+                    document.getElementById("hideRes").style.display = "inline";
+                }
+                   //alert(msg);
             
                 });
                 //alert(msg)
@@ -188,7 +133,7 @@ function myAccept($Username, $buyer, $item, $amount, $price){
                     
                     
                     type: "POST",
-                    url: 'checker2.php',
+                    url: 'beerTransaction.php',
                     data: {Username: $Username, item: $item, amount: $amount, price: $price , buyer: $buyer, }
                 }).done(function(msg){
                     //alert($buyer);

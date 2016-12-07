@@ -4,7 +4,7 @@
         include 'config.php';
         $username = $_COOKIE['user'];
         
-        $query = "SELECT * FROM transactions WHERE buyer = '$username'";
+        $query = "SELECT * FROM transactions WHERE buyer = '$username' && active = TRUE";
         $result = mysqli_query($myConnection, $query);
     
         //$blah = []; //instantiate array

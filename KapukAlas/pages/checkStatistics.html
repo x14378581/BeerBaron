@@ -4,7 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>
             
-        function loadDoc1(){
+        function loadStats(){
              $.ajax({
              url: 'stats.php'})
             .done (function(data) {
@@ -17,7 +17,7 @@
     </head>
     <body>
         
-         <button type="button"  onclick="loadDoc1()">Stats</button>
+         <button type="button"  onclick="loadStats()">Stats</button>
         <div id = "stats">
             
             

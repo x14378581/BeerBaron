@@ -39,12 +39,9 @@
         <ul class="nav navbar-nav">
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Homepage</a></li>
+          <li><a href="/KapukAlas/index.html">Homepage</a></li>
           <li><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Blogs</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="pages/beerbarron.html">Beerbarron</a></li>
           <li class="dropdown">
             <a onclick="getUserLocation();" class="dropdown-toggle" data-toggle="dropdown">Recent Nearby Players <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -59,30 +56,28 @@
   
 
 
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="action_page.php">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <input type="checkbox" checked="checked"> Remember me
-    </div>
-
-    <div class="end" style="background-color:#f1f1f1">
+<div id="id01" class="modal"> 
+    <div class="modal-content animate" class="container">
+         <form action = "pages/login.php" method ="POST">
+           <label><b>Username</b></label>
+            <input type="text" name="Uname" required="true"/>
+            
+             <label><b>Password</b></label>
+            <input type="password" name="Password" required="true"/>
+      
+      <button type="submit" name = "formSubmit" value="Submit">Login</button>
+      
+      
+      <input type="checkbox" checked="checked"/> Remember me
+            
+                <div class="end" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      <span class="password">Forgot <a href="#">password?</a></span>
+          </form>
+        </div>
+ 
     </div>
-  </form>
+ 
 </div>
 
 
@@ -118,8 +113,8 @@
       <div class="row">
         <div class="col-md-3">
          
-          <h3>PO PO</h3>
-          <p></p>
+          <h3>Undercover Cops</h3>
+          <p> These streets are being flooded with home-brewed booze; But you're going to stop it... For a profit. </p>
         </div>
       </div>
     </section>
@@ -130,8 +125,8 @@
       <div class="row">
         <div class="col-md-3">
          
-          <h3>Beer Baron</h3>
-          <p></p>
+          <h3>Beer Barons</h3>
+          <p>There's a lot a money to be made; Just because booze is now illegal... Doesn't mean people won't get thirsty.</p>
         </div>
       </div>
     </section>
@@ -142,18 +137,21 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h4>KapukAlas</h4>
-          <p>Duis viverra suscipit vehicula. Aenean eu massa leo. Sed ullamcorper pretium risus eu scelerisque. Mauris venenatis consequat ultrices. Quisque fringilla sed lacus eu volutpat.</p>
+          <h4>About Us</h4>
+          <p> Welcome to Hootch and Scootch, the game that takes prohibition-era America to Ireland!</p>
+          <p> Play as a Beer Baron, make big money dealing in illicit beverages...</p>
+          <p> Or play a cop, crack-down on those Al Capone wannabes and land that big bust...</p>
+          <p> Exchange your in-game dollars at promoted bars for, you guessed it... FREE PINTS! </p>
         </div>
         <div class="col-md-3">
           <h4>Our location</h4>
           <div class="row">
             <div class="col-md-1"><span class="glyphicon glyphicon-map-marker"></span></div>
-            <div class="col-md-10">Vestibulum placerat, enim sit amet congue aliquet.</div>
+            <div class="col-md-10">Mayor Street, IFSC, Dublin 1, D01 Y300</div>
           </div><br>
           <div class="row">
             <div class="col-md-1"><span class="glyphicon glyphicon-envelope"></span></div>
-            <div class="col-md-10">varius@nibh.lectus.com</div>
+            <div class="col-md-10">HaS@ncirl.student.com</div>
           </div><br>
           <div class="row">
             <div class="col-md-1"><span class="glyphicon glyphicon-earphone"></span></div>
@@ -171,16 +169,12 @@
             <div class="col-md-10">Maecenas suscipit in est a placerat. Curabitur semper sed nibh sed egestas. </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <h4>Subscribe</h4>
-          <input type="text" class="form-control" placeholder="your email address">
-        </div>
       </div>
     </div>
   </footer>  
 
   <footer id="copyright">
-    <p>Copright by @andreyyann 2014, All right reserved.</p>
+    <p>Copyright @Hootch&Scootch 2016, All right reserved.</p>
   </footer>
 
     <script src="js/jquery.js"></script>
