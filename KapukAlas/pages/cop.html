@@ -2,7 +2,10 @@
 <html>
     <head>
         <title> </title>
-        
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         
         <script>
@@ -10,7 +13,7 @@
              //alert("Lets do it!!")
              request();
              response();
-             //loadDoc1();
+             loadStats();
              
             }, 3000 /*1000 * 60 * 2*/); // where X is your every X minutes
             
@@ -40,25 +43,10 @@ function myNick($Username, $buyer, $item, $amount, $price){
                 });
 }
 
-function response(){
-                 $.ajax({
-                    url:"copResponse.php",
-                })
-                .done(function(msg){
-                $('#response').html(msg);
-                //alert(msg);
-                //if(msg != null){
-                 //   document.getElementById("hideRes").style.display = "inline";
-            //  }
-                   //alert(msg);
-            
-                });
-                //alert(msg)
-}
 
         function loadStats(){
              $.ajax({
-             url: 'stats.php'})
+             url: 'copStats.php'})
             .done (function(data) {
             $('#stats').html(data);
              //alert( "Load was performed." );
@@ -67,16 +55,42 @@ function response(){
         </script>
     </head>
     <body>
-        <h1>This is the cop page</h1>
         
+ 
+  
+  
+  <div id="nav" >
+    <nav class="navbar navbar-default navbar-static affix-top" role="navigation">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="container">
+      <div class="fourbyfour" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav"><a class="navbar-brand" id="title" href="#"><CENTER>Hooch & Scooch</CENTER></a>
+        </ul>
+        <ul class="nav navbar-nav navbar-right1" class="fourbyfour" style= width:100%;> 
+        
+          <li id="w"><a href="#" href="/KapukAlas/index.html"><center>Homepage</center></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+    </nav>
+  </div>
+      <div id="headerc" >
+        <h1>Undercover Garda</h1>
+        </div>
          <div id = "checker">
              
          </div>
          <div id = "response">
              
          </div>
-         
-        <button type="button"  onclick="loadStats()">Stats</button>
+         <div id="imgc">
+             <img src="..//img/cop_walks.gif" alt="HTML5 Icon"  style="width:53%;height:53%;">
+         </div>
+         <div id="br">
+        <button type="button" id="bt" onclick="loadStats()">Stats</button>
+        </div>
         <div id = "stats">
             
             

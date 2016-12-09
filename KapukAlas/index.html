@@ -6,6 +6,19 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+        <script>
+function form(){
+
+                $.ajax({
+                    url:"form.php",
+                })
+                .done(function(msg){
+                $('#checker').html(msg);
+            
+                });
+            }  
+        
+    </script>
   </head>
   <body>
     <header>
@@ -31,7 +44,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">KapukAlas</a>
+        <a class="navbar-brand" href="#">Hooch & Scooch</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,15 +70,15 @@
 
 
 <div id="id01" class="modal"> 
-    <div class="modal-content animate" class="container">
-         <form action = "pages/login.php" method ="POST">
+    <div id="left" class="modal-contentl animate" class="container">
+         <form class="end" action = "pages/login.php" method ="POST">
            <label><b>Username</b></label>
-            <input type="text" name="Uname" required="true"/>
+            <center><input type="text" name="Uname" required="true"/></center>
             
              <label><b>Password</b></label>
-            <input type="password" name="Password" required="true"/>
+            <center><input type="password" name="Password" required="true"/></center>
       
-      <button type="submit" name = "formSubmit" value="Submit">Login</button>
+      <button  type="submit" name = "formSubmit" value="Submit">Login</button>
       
       
       <input type="checkbox" checked="checked"/> Remember me
@@ -77,7 +90,37 @@
         </div>
  
     </div>
- 
+  <div class="modal-contentr animate" class="container">
+                 <form class="end" action = "form.php" method ="POST">
+            <label>First Name:<br/></label>
+            <center><input type="text" name="Fname" required="true"/> </center>
+            
+            <label>Last Name:<br/></label>
+            <center><input type="text" name="Lname" required="true"/></center>
+            
+            <label>Email:<br/></label>
+            <center><input type="text" name="Email" required="true"/></center>
+            
+            <label>Username:<br/></label>
+            <center><input type="text" name="Uname" required="true"/></center>
+            
+            <label>Password:<br/></label>
+            <center><input type="password" name="Password" required="true"/></center>
+            
+            <label>Choose a Character:</label> <br/><br/>
+            <select name ="charater">
+                <option value = "0">Beer Barron
+                
+                </option>
+                
+                <option value = "1" >Cop
+                
+                </option>
+            </select>
+            <br/>
+            <button type="submit" onclick = "form();"  name = "formSubmit" value="Submit">Submit</button
+        </form>
+    </div>
 </div>
 
 
@@ -118,10 +161,7 @@
         </div>
       </div>
     </section>
-</div>
-
-<div id="right">
-      <section id="about9" class="container"> 
+          <section id="about9" class="container"> 
       <div class="row">
         <div class="col-md-3">
          
@@ -130,15 +170,15 @@
         </div>
       </div>
     </section>
-  </div>
 </div>
+
 
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-md-3">
           <h4>About Us</h4>
-          <p> Welcome to Hootch and Scootch, the game that takes prohibition-era America to Ireland!</p>
+          <p> Welcome to Hooch and Scooch, the game that takes prohibition-era America to Ireland! But thats not nearly as bad as it sounds, trust us!</p>
           <p> Play as a Beer Baron, make big money dealing in illicit beverages...</p>
           <p> Or play a cop, crack-down on those Al Capone wannabes and land that big bust...</p>
           <p> Exchange your in-game dollars at promoted bars for, you guessed it... FREE PINTS! </p>
@@ -174,7 +214,7 @@
   </footer>  
 
   <footer id="copyright">
-    <p>Copyright @Hootch&Scootch 2016, All right reserved.</p>
+    <p>Copyright @Hooch&Scooch 2016, All right reserved.</p>
   </footer>
 
     <script src="js/jquery.js"></script>
@@ -344,5 +384,6 @@ function startChat(element){
 
 
 </script>
+
   </body>
 </html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html><head>
     <title> BEER BARON PAGE </title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
@@ -24,14 +22,14 @@
 */
     function getinfo(){
     
-       alert("the function getinfo has been csalled");
+       //alert("the function getinfo has been csalled");
        
         $.ajax({
              type:"post",
              url: 'beerbaron.php',
              success: function(data) {
-                 alert("the ajax function has received");
-                document.getElementById("output").innerHTML = "Paragraph changed!";
+                 //alert("the ajax function has received");
+                document.getElementById("output").innerHTML = "";
             }
         });
     }
@@ -64,30 +62,55 @@
         function makeSpirits() {
             spirit = 3;
             //alert("You have made "+spirit+" spirits");
-            window.location.href = "beerbaron.php?spirit=" + spirit; // this sends the variable to the php file.
+            //window.location.href = "beerbaron.php?spirit=" + spirit; // this sends the variable to the php file.
+            $.ajax({
+             type:"post",
+             data:{spirit: spirit},
+             url: 'beerbaron.php',
+             success: function(data) {
+                 alert("the ajax function has received " + data);
+                document.getElementById("checker2").innerHTML = "<h1>"+data+"</h1>";
+            }
+            
+            });
+            
         }
+        
 
         function makeBeer() {
+            //alert("The make beer function has been clicked");
             var d = new Date();
             var clickTime = d.getTime();
             var finishTime = clickTime + 10000;
-            alert(clickTime+", "+finishTime);
+            //alert(clickTime+", "+finishTime);
             
             beer = 10;
-            window.location.href = "beerbaron.php?beer=" + beer; // this sends the variable to the php file.
+        
+    //        window.location.href = "beerbaron.php?beer=" + beer; // this sends the variable to the php file.
+            $.ajax({
+             type:"post",
+             data:{beer: beer},
+             url: 'beerbaron.php',
+             success: function(data) {
+                 //alert("the ajax function has received " + data);
+                document.getElementById("checker2").innerHTML = "<h1>"+data+"</h1>";
+            }
+            
+            });
+            
         }
 
 
         function makeCider() {
             cider = 10;
             //alert("You have made "+cider+" ciders");
-            window.location.href = "beerbaron.php?cider=" + cider; // this sends the variable to the php file.
+            //window.location.href = "beerbaron.php?cider=" + cider; // this sends the variable to the php file.
         }
 
         function makeWine() {
             wine = 10;
             //alert("You have made "+wine+" wines");
-            window.location.href = "beerbaron.php?wine=" + wine; // this sends the variable to the php file.
+            //window.location.href = "beerbaron.php?wine=" + wine; // this sends the variable to the php file.
         }
     </script>
     
@@ -213,7 +236,7 @@
 <!-- The Modal -->
 
     <div id="nav">
-    <nav class="navbar navbar-default navbar-static affix-top" role="navigation">
+    <nav class="navbar navbar-defaultb navbar-static affix-top"  role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="container">
 
@@ -222,7 +245,7 @@
       <div class="fourbyfour" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
         </ul>
-        <ul class="nav navbar-nav navbar-right1" style= width:100%;>
+        <ul class="nav navbar-nav navbar-right1"  class="fourbyfour" style="width:100%"  style="color:#FFBF00", >
           <li id="b"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeBeer, 1000)"><center>Make Beer</center></a></li>
           <li id="a"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeSpirits, 1000)"><center>Make Spirits</center></a></li>
           <li id="b"><a href="#" onclick="getinfo(); document.getElementById('hidden').style.display = 'block';setTimeout(makeWine, 1000)"><center>Make Wine</center></a></li>
@@ -294,31 +317,7 @@
 
 
 
-  <div id="wrapper">
-  <div id="left">
-    <section id="about" class="container">
-      <div class="row">
-        <div class="col-md-3">
-        
-          <h3>Cop</h3>
-          <p></p>
-        </div>
-      </div>
-    </section>
-</div>
 
-<div id="right">
-      <section id="about9" class="container"> 
-      <div class="row">
-        <div class="col-md-3">
-         
-          <h3>Beer Baron</h3>
-          <p></p>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
 
  
   
@@ -456,52 +455,63 @@ function startChat(element){
          <input type="button"  value = "Display Message" onclick="getData('testData.txt','targetDiv')">
          
          </form>-->
-
-       <h1>This is the transaction test page</h1>
+    <div id="headerb" >
+       <h1>Beerbaron</h1>
+    </div>
+    <div id="imgb">
+             <img src="..//img/Beerbrews.gif" alt="HTML5 Icon"  style="width:53%;height:53%;">
+         </div>
+     <div>
+         
+     </div>
       <div id="Input_form">
           <form>
               <select id = "item">
                   <option value="Beer">Beer</option>
                   <option value="Spirit">Spirits</option>
-                  <option value="Wine">Wine</option>
-                  <option value="Cider">Cider</option>
+                  <!--<option value="Wine">Wine</option>
+                  <option value="Cider">Cider</option>-->
               </select><br/>
-            Amount:<br/>
+            <label>Amount:</label><br/>
             <input id = "amount" type="number" name="amount" min="1"/>
             <br/>
-            Price:<br/>
+            <label>Price:</label><br/>
             <input id="price" type="number" name="price" min="1"/>
             <br/>
              
           </form>
       </div>
-      <div id="Player_container">
-         <button type="button"  onclick="loadDoc1()">Player</button>
-         <div id="player">
+
+
+         <div id="player" >
          </div>
          
-         <div id = "checker">
+         <div id = "checker" >
              
          </div>
          
-        <div id = "checker2">
-             
+        <div id ="checker2">
+         
+             This message is inside checker 2
          </div>
+         
+        
        <div id = "response">
            
        </div>
-       <button  id="hideRes" onclick="hideResponse();" style="display:inline">Hide Response</button> 
-      </div>
+     <!--  <button  id="hideRes" onclick="hideResponse();" style="display:inline">Hide Response</button> -->
+
      
      
      
      <!--lukes work-->
-    <button type="button"  onclick="loadStats()">Stats</button>
+ <div id="br" >
+    <button type="button"  id="bt"style="background-color:#ffa900" onclick="loadStats()">Stats</button>
         <div id = "stats">
             
             
         </div>
-     
+ </div>
     <script>
          function loadDoc1(){
              $.ajax({
@@ -511,7 +521,7 @@ function startChat(element){
              });
          }
          
-         function myFunction2(elem){
+function myFunction2(elem){
              //alert("the element that is being refer5enced is : "+elem);
              var item = document.getElementById("item").value;
              var amount = document.getElementById("amount").value;
@@ -528,6 +538,7 @@ function startChat(element){
                     url: 'sellFunction.php',
                     data: {elem: elem, item: item, amount: amount, price: price}
                 }).done(function(msg){
+                  $('#checker2').html(msg);
                     
                     //alert(msg);
             
@@ -539,6 +550,7 @@ setInterval(function() {
  //alert("Lets do it!!")
  request();
  response();
+ //response1();
  loadDoc1();
  
 }, 3000 /*1000 * 60 * 2*/); // where X is your every X minutes
@@ -563,15 +575,21 @@ function response(){
                 })
                 .done(function(msg){
                 $('#response').html(msg);
-                //alert(msg);
-                if(msg != null){
-                    document.getElementById("hideRes").style.display = "inline";
-                }
-                   //alert(msg);
             
                 });
                 //alert(msg)
 }
+
+/*function response1(){
+                 $.ajax({
+                    url:"copResponse.php",
+                })
+                .done(function(msg){
+                $('#response').html(msg);
+            
+                });
+                //alert(msg)
+}*/
     
  
             

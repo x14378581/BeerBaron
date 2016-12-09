@@ -17,7 +17,7 @@
          $price = $row[4];
          //echo $Username;
          
-          echo "The user: " . $Username . " wants to sell you " . $item . " the amount is ". $amount . " the price is ". $price ."you are the buyer ".$buyer."<button onclick= \"myAccept('$Username', '$buyer', '$item', '$amount', '$price')\">Accept Offer</button> <button onclick= \"myDeny('$Username', '$buyer')\">Deny Offer</button>";
+          echo "The user: " . $Username . " wants to sell you " . $item . " the amount is ". $amount . " the price is ". $price ."you are the buyer ".$buyer."<br/><button onclick= \"myAccept('$Username', '$buyer', '$item', '$amount', '$price')\">Accept Offer</button> <button onclick= \"myDeny('$Username', '$buyer')\">Deny Offer</button><br/><br/>";
        
        }
        

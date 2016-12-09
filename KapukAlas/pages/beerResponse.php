@@ -6,11 +6,13 @@
         $result = mysqli_query($myConnection, $query);
         
        while ($row = mysqli_fetch_row($result)){
-         $Username = $row[0];
+         $Username = $username; //$row[0];
          $buyer = $row[1];
          $message = $row[2];
          
-         echo $Username." you tried to sell to " .$buyer. " and you have being " .$message. "<button onclick= \"myOkay('$Username', '$buyer')\">Okay</button>"; 
+     
+         
+        echo $Username . " you tried to sell to " . $buyer . " and you have being " . $message . "<br/><button onclick= \"myOkay('$Username', '$buyer')\">Okay</button><br/><br/>"; 
          
        }
 ?>

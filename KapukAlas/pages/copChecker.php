@@ -15,7 +15,7 @@
          $price = $row[4];
          //echo $Username;
          
-          echo "The user: " . $Username . " wants to sell you " . $item . " the amount is ". $amount . " the price is ". $price ."<button onclick= \"myNick('$Username', '$buyer', '$item', '$amount', '$price')\">Nick Them</button>";
+          echo "The user: " . $Username . " wants to sell you " . $item . " the amount is ". $amount . " the price is ". $price ." <br/> <button onclick= \"myNick('$Username', '$buyer', '$item', '$amount', '$price')\">Nick Them</button> <br/><br/>";
        
        }
        

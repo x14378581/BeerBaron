@@ -6,7 +6,6 @@
        
        //varlaibles
        sleep(5);
-
        
        $username = $_COOKIE['user'];
        $beerCost = 50;
@@ -19,8 +18,8 @@
        $row = mysqli_fetch_row($moneyResult);
        $money = $row[0];
        
-       $beer = $_GET['beer']; // this gets the variable that was sent.
-       $spirit = $_GET['spirit'];
+       $beer = $_POST['beer']; // this gets the variable that was sent.
+       $spirit = $_POST['spirit'];
        $wine = $_GET['wine'];
        $cider = $_GET['cider'];// this gets the variable that was sent
        
@@ -29,34 +28,16 @@
               $result = mysqli_query($myConnection, $addBeerQuery);
        }
        
+       elseif ($money < $beerCost) {
+              echo "you dont have enough money chief";
+       }
+       
        if($money >= $spiritCost){
               $addSpiritQuery = "UPDATE inventory SET spirits = spirits + " . $spirit . ", dollars = dollars - $spiritCost WHERE username = '" .$username . "'"; // this is updating the spirit value of the user that has made the beer.
               $result = mysqli_query($myConnection, $addSpiritQuery);
        }
        
-       
-
-       
-       
-     
-       //$currentBeer = mysqli_query($myConnection, "SELECT beer FROM inventory WHERE username = '" . $username . "'");
-       //$currentSpirits = mysqli_query($myConnection, "SELECT spirits FROM inventory WHERE username = '" . $username . "'");
-       
-       //$currentBeer = (int)$currentBeer;
-       //$currentSpirits = (int)$currentSpirits;
-       
-       //echo("Beer = " .$currentBeer);
-       //echo("Spirits = " .$currentSpirits);
-       
-       
-       $myfile = fopen("beerbarron.html", "r") or die("Unable to open file!");
-       echo fread($myfile,filesize("beerbarron.html"));
-       fclose($myfile)
-       
-       /*$query = "SELECT * FROM credentials";
-       $result = mysqli_query($myConnection, $query);
-
-       while ($row = mysqli_fetch_assoc($result)) {
-        echo "The ID is: " . $row['id'] . " and the Username is: " . $row['username'];
-       }*/
+       elseif ($money < $spiritCost) {
+              echo "you dont have enough money chief";
+       }
 ?>

@@ -40,13 +40,8 @@
            $query1 = "INSERT INTO inventory VALUES ('$username', 10, 10, '500')";
            $result1 = mysqli_query($myConnection, $query1);
            
-          /* if ($charater == 0){
-              $myfile = fopen("form.html", "r") or die("Unable to open file!");
-              echo fread($myfile,filesize("form.html"));
-              fclose($myfile);
-            }*/
           }
-           
+          
            
            
 ?>
